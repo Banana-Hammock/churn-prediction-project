@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Churn Predictor</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #2c2c2c;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-right: 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+    
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #005f99;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <h1>Customer Churn Prediction</h1>
+  <form action="/predict" method="post">
+    <label>Credit Score:</label>
+    <input type="number" name="CreditScore" required min="300" max="900">
+
+    <label>Geography:</label>
+    <select name="Geography">
+      <option value="France">France</option>
+      <option value="Germany">Germany</option>
+      <option value="Spain">Spain</option>
+    </select>
+
+    <label>Gender:</label>
+    <select name="Gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <label>Age:</label>
+    <input type="number" name="Age" required min="18" max="100">
+
+    <label>Tenure (years):</label>
+    <input type="number" name="Tenure" required min="0" max="10">
+
+    <label>Balance:</label>
+    <input type="number" name="Balance" required min="0" step="0.01">
+
+    <label>Number of Products:</label>
+    <input type="number" name="NumOfProducts" required min="1" max="4">
+
+    <label>Has Credit Card:</label>
+    <select name="HasCrCard">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+
+    <label>Is Active Member:</label>
+    <select name="IsActiveMember">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+
+    <label>Estimated Salary:</label>
+    <input type="number" name="EstimatedSalary" required min="0" step="0.01">
+
+    <input type="submit" value="Predict Churn">
+  </form>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const result = urlParams.get('result');
+    if (result) {
+      alert("Prediction: " + result);
+    }
+  </script>
+
+</body>
+</html>

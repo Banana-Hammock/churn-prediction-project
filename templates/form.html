@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personality Predictor</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #1e1e1e;
+            padding: 30px 40px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            width: 85%;
+            border-color: #555;
+            border-radius: 2px;
+            border-width: 2px;
+            border-style: double;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-size: 15px;
+            color: #f0f0f0;
+        }
+
+        input[type="number"] {
+            width: 95%;
+            padding: 10px;
+            background-color: #2b2b2b;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 5px;
+            font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        input[type="number"]:invalid {
+            border-color: #731515;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+
+        .radio-group label {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .radio-group input {
+            margin-right: 5px;
+        }
+
+        button {
+            width: 30%;
+            background-color: #380774;
+            color: white;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #402188;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="/predict" method="POST">
+            <h1>Personality Quiz</h1>
+            <hr><br>
+
+            <label for="Time_spent_Alone">1. &nbsp; How many hours a day do you spend alone?</label>
+            <input type="number" name="Time_spent_Alone" min="0" max="24" required>
+
+            <label for="Social_event_attendance">2. &nbsp; How many social events do you attend per month?</label>
+            <input type="number" name="Social_event_attendance" min="0" max="30" required>
+
+            <label for="Going_outside">3. &nbsp; How many days a week do you go outside?</label>
+            <input type="number" name="Going_outside" min="0" max="7" required>
+
+            <label for="Friends_circle_size">4. &nbsp; How many close friends do you have?</label>
+            <input type="number" name="Friends_circle_size" min="0" required>
+
+            <label for="Post_frequency">5. &nbsp; How many social media posts do you make per week?</label>
+            <input type="number" name="Post_frequency" min="0" required>
+
+            <label>6. &nbsp; Do you have stage fear?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="Stage_fear" value="Yes" required> Yes</label>
+                <label><input type="radio" name="Stage_fear" value="No"> No</label>
+            </div><br>
+
+            <label>7. &nbsp; Do you feel drained after socializing?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="Drained_after_socializing" value="Yes" required> Yes</label>
+                <label><input type="radio" name="Drained_after_socializing" value="No"> No</label>
+            </div>
+            
+            <br><br>
+            <center><button type="submit">Predict</button></center>
+            <br>
+
+            {% if result %}
+                <div class="result">You are likely an: {{ result }}</div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
